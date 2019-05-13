@@ -15,7 +15,7 @@ con.connect(function(err) {
 module.exports = function(app) {
     let result;
     app.post('/epreuves', (req, res) => {
-        con.query('SELECT * from epreuve', function(err, rows, fields) {
+        con.query('SELECT * from sous_epreuve WHERE idSous_epreuve ='+ id, function(err, rows, fields) {
             if (!err) {
                 console.log('The solution is: ', rows);
                 result = rows;

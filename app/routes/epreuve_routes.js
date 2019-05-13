@@ -1,4 +1,5 @@
 //const mariadb = require('mariadb');
+
 const mysql = require('mysql');
 const con = mysql.createConnection({
     host: "localhost",
@@ -14,19 +15,21 @@ con.connect(function(err) {
 
 module.exports = function(app) {
     let result;
-    app.post('/epreuves', (req, res) => {
+    app.post('/epreuves', (rej, res) => {
         con.query('SELECT * from epreuve', function(err, rows, fields) {
             if (!err) {
                 console.log('The solution is: ', rows);
-                result = rows;
+                rows.forEach(element => {
+                    res.send(element);
+////////////////////////////////////////////
+                })
             }else
                 console.log('Error while performing Query.');
         });
-        if(result != ""){
-            return result;
 
-        }else{
-            console.log('Error while performing Query.');
-        }
+
+
+
     });
+
 };

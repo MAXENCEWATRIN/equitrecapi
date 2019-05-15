@@ -8,10 +8,7 @@ const con = mysql.createConnection({
     database: "equitrec"
 });
 let results = [];
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+
 
 module.exports = function(app) {
     //liste des epreuves

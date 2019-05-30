@@ -17,4 +17,5 @@ module.exports = sequelize.define("utilisateur", {
         allowNull: false
     },
 
+
 });

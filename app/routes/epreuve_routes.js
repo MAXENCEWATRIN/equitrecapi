@@ -1,6 +1,6 @@
 //const mariadb = require('mariadb');
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -10,35 +10,34 @@ const con = mysql.createConnection({
 let results = [];
 
 
-module.exports = function(app) {
+module.exports = function (app) {
     //liste des epreuves
     app.post('/epreuves', (rej, res) => {
-        con.query('SELECT * from epreuve', function(err, rows, fields) {
+        con.query('SELECT * from epreuve', function (err, rows, fields) {
             if (!err) {
                 console.log('query success : ', rows);
                 rows.forEach(element => {
-                    results.push(element);
-
-                },
+                        results.push(element);
+                    },
                 );
                 res.send(results);
-            }else
+            } else
                 console.log('Error while performing Query.');
         });
     });
-        //requete d'une epreuve
-        app.post('/epreuve', (rej, res) => {
-            con.query('SELECT * from epreuve', function(err, rows, fields) {
-                if (!err) {
-                    console.log('query success : ', rows);
-                    rows.forEach(element => {
-                            results.push(element);
+    //requete d'une epreuve
+    app.post('/epreuve/:id', (rej, res) => {
+        con.query('SELECT * from epreuve', function (err, rows, fields) {
+            if (!err) {
+                console.log('query success : ', rows);
+                rows.forEach(element => {
+                        results.push(element);
 
-                        },
-                    );
-                    res.send(results);
-                }else
-                    console.log('Error while performing Query.');
-            });
+                    },
+                );
+                res.send(results);
+            } else
+                console.log('Error while performing Query.');
+        });
     });
 };

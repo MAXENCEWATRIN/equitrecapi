@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -10,11 +10,11 @@ let results = [];
 module.exports = function (app) {
     //deux param pour auth reçu, faire vérif des hash
     app.post('/authentification/:login/:password', (req, res) => {
-        var login = req.params.login;
-        var passwordhash = req.params.password;
+        var identifiant = req.params.login;
+        var motdepasseHashed = req.params.password;
         var i = 0;
-        //faire requête qui récupère les données en fonction du login non hashé
-        con.query("SELECT password from authentification where login='" + login + "'", function (err, rows, fields) {
+        //faire requête qui récupère les données en fonction du identifiant non hashé
+        con.query("SELECT motdepasse from authentification where identifiant='" + identifiant + "'", function (err, rows, fields) {
             if (!err) {
                 rows.forEach(element => {
                     results.push(element);
@@ -22,7 +22,7 @@ module.exports = function (app) {
                     console.log(i);
                 });
                 if (i === 1) {
-                    if (results[0].password === passwordhash) {
+                    if (results[0].password === motdepasseHashed) {
                         res.send("{'response':{'type':'true', 'message':'Profil connecté}}");
                     } else res.send(false);
                 } else {
@@ -42,12 +42,12 @@ module.exports = function (app) {
         var login = req.params.login;
         var passwordhash = req.params.password;
         //verification user existant
-        con.query("SELECT login from authentification where login='" + login + "'", function (err, rows, fields) {
+        con.query("SELECT identifiant from authentification where identifiant='" + login + "'", function (err, rows, fields) {
             if (!err && rows.length > 0) {
                 res.send("{'response':{'type':'false', 'message':'Identifiant déjà utilisé'}}");
             } else {
-                con.query("INSERT INTO authentification (login, password)" +
-                    "VALUES ('"+login+"', '"+passwordhash+"');", function (err, rows, fields) {
+                con.query("INSERT INTO authentification (identifiant, motdepasse)" +
+                    "VALUES ('" + login + "', '" + passwordhash + "');", function (err, rows, fields) {
                     if (!err) {
                         res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
                     } else {

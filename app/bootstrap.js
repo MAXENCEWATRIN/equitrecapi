@@ -19,7 +19,7 @@ module.exports = async () => {
     }).catch(errHandler);
 
     const utilisateur = await Utilisateur.create({
-        nom: "maxence.watrin",
+        identifiant: "maxence.watrin",
         motdepasse: "azertyuiop",
         roleId: role.id
     }).catch(errHandler);
@@ -32,9 +32,4 @@ module.exports = async () => {
         numero: 12,
         niveauId: niveau.id
     }).catch(errHandler);
-
-    // console.log(utilisateur);
-    // console.log(role);
-    // console.log(niveau);
-    // console.log(dossard);
 };

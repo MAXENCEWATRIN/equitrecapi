@@ -2,24 +2,24 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("utilisateurs",{
-      id : {
-        type : Sequelize.INTEGER(11),
+    return queryInterface.createTable("utilisateurs", {
+      id: {
+        type: Sequelize.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      nom : {
-        type : Sequelize.STRING(255),
+      identifiant: {
+        type: Sequelize.STRING(255),
         allowNull: false,
-        unique : true,
+        unique: true,
       },
-      motdepasse : {
-        type : Sequelize.STRING(255),
+      motdepasse: {
+        type: Sequelize.STRING(255),
         allowNull: false
       },
-      createdAt : Sequelize.DATE,
-      UpdatedAt : Sequelize.DATE,
+      createdAt: Sequelize.DATE,
+      UpdatedAt: Sequelize.DATE,
     })
   },
 

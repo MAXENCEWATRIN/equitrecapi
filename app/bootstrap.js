@@ -2,8 +2,9 @@ module.exports = async () => {
     const Utilisateur = require("./models/Utilisateur");
     const Role = require("./models/Role");
 
-    Role.hasMany(Utilisateur, {as: "Utilisateur", foreignKey: "idutilisateur"});
-    Utilisateur.belongsTo(Role, {as: "Role", foreignKey: "idrole"});
+    Role.hasMany(Utilisateur, {as: "Utilisateurs", foreignKey: "utilisateurId"});
+    Utilisateur.belongsTo(Role, {as: "Role", foreignKey: "utilisateurId"});
+
     const errHandler = (err) => {
         console.error("Error : ", err);
     }

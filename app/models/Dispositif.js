@@ -9,8 +9,12 @@ module.exports = sequelize.define("dispositif", {
     },
     label: {
         type: Sequelize.STRING(255),
+        allowNull: false,
+        unique: true
     },
     numero: {
         type: Sequelize.INTEGER(11),
+        allowNull: false,
+        unique: true
     }
 });

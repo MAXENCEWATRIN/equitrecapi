@@ -9,5 +9,6 @@ module.exports = sequelize.define("epreuve", {
     },
     label: {
         type: Sequelize.STRING(255),
+        allowNull: false
     },
 });

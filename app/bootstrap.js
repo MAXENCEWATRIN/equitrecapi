@@ -7,22 +7,19 @@ module.exports = async () => {
 
     const errHandler = (err) => {
         console.error("Error : ", err);
-    }
-
-    const role = await Role.create(
-        {label: "juré"}
-    ).catch(errHandler);
+    };
 
     const utilisateur = await Utilisateur.create({
         nom: "maxence.watrin",
         motdepasse: "azertyuiop",
-        idrole: role.idrole,
+        utilisateurId: utilisateur.id
     }).catch(errHandler);
 
-    const utilisateurJure = await Role.findAll({
-        where: {label: 'juré'},
-        include: [{model: Utilisateur, as: "Utilisateur"}]
+    const role = await Role.create({
+       label: "Juré"
     }).catch(errHandler);
 
-    console.log(utilisateurJure);
-}
+
+    console.log(utilisateur);
+    console.log(role);
+};

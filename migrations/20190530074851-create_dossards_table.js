@@ -15,6 +15,7 @@ module.exports = {
             },
             createdAt: Sequelize.DATE,
             UpdatedAt: Sequelize.DATE,
+            niveauId: Sequelize.INTEGER(11)
         })
     },
 

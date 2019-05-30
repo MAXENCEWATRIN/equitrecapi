@@ -10,5 +10,6 @@ module.exports = sequelize.define("niveau", {
     label: {
         type: Sequelize.STRING(255),
         allowNull: false,
-    }
+    },
+    freezeTableName: true
 });

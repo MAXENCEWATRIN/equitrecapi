@@ -14,15 +14,15 @@ module.exports = async () => {
         console.error("Error : ", err);
     };
 
-    // const utilisateur = await Utilisateur.create({
-    //     nom: "maxence.watrin",
-    //     motdepasse: "azertyuiop",
-    //     utilisateurId: utilisateur.id
-    // }).catch(errHandler);
+    const role = await Role.create({
+        label: "Juré"
+    }).catch(errHandler);
 
-    // const role = await Role.create({
-    //     label: "Juré"
-    // }).catch(errHandler);
+    const utilisateur = await Utilisateur.create({
+        nom: "maxence.watrin",
+        motdepasse: "azertyuiop",
+        roleId: role.id
+    }).catch(errHandler);
 
     const niveau = await Niveau.create({
         label: "débutant"
@@ -35,6 +35,6 @@ module.exports = async () => {
 
     // console.log(utilisateur);
     // console.log(role);
-    console.log(niveau);
-    console.log(dossard);
+    // console.log(niveau);
+    // console.log(dossard);
 };

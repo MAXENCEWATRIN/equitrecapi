@@ -7,6 +7,4 @@ module.exports = sequelize.define("style",{
         autoIncrement: true,
         primaryKey: true,
     },
-    freezeTableName: true
-
 });

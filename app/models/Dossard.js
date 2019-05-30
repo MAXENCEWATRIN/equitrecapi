@@ -12,5 +12,4 @@ module.exports = sequelize.define("dossard", {
         allowNull: false,
         unique: true,
     },
-    freezeTableName: true
 });

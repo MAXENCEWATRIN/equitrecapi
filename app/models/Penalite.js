@@ -7,6 +7,4 @@ module.exports = sequelize.define("penalite",{
         autoIncrement: true,
         primaryKey: true,
     },
-    freezeTableName: true
-
 });

@@ -20,6 +20,7 @@ module.exports = {
       },
       createdAt: Sequelize.DATE,
       UpdatedAt: Sequelize.DATE,
+
     })
   },
 

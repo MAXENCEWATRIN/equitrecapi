@@ -11,6 +11,5 @@ module.exports = sequelize.define("resultat",{
         type : Sequelize.INTEGER(100),
         defaultValue: 0
     },
-    freezeTableName: true
 
 });

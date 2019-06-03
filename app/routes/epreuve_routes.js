@@ -13,7 +13,7 @@ let results = [];
 module.exports = function (app) {
     //liste des epreuves
     app.post('/epreuves', (rej, res) => {
-        con.query('SELECT * from epreuve', function (err, rows, fields) {
+        con.query('SELECT * from epreuves', function (err, rows, fields) {
             if (!err) {
                 console.log('query success : ', rows);
                 rows.forEach(element => {

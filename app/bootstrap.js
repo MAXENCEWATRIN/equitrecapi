@@ -1,4 +1,4 @@
-module.exports = async () => {
+module.exports.utilisateurDo = async (utilisateur) => {
     // instance des models
     const Utilisateur = require("./models/Utilisateur");
     const Role = require("./models/Role");
@@ -38,11 +38,12 @@ module.exports = async () => {
         label: "Juré"
     }).catch(errHandler);
 
-    const utilisateur = await Utilisateur.create({
-        identifiant: "maxence.watrin",
-        motdepasse: "azertyuiop",
+    const ut = await Utilisateur.create({
+        identifiant: utilisateur.identifiant,
+        motdepasse: utilisateur.motdepasse,
         roleId: role.id
     }).catch(errHandler);
+    console.log(ut);
 
     const niveau = await Niveau.create({
         label: "débutant"

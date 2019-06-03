@@ -3,25 +3,25 @@ const bootstrap = require("../bootstrap");
 module.exports = class Utilisateur {
 
     constructor(identifiant, motDePasse) {
-        this.identifiant = identifiant;
-        this.motDePasse = motDePasse;
+        this._identifiant = identifiant;
+        this._motDePasse = motDePasse;
         console.log("created")
     }
 
     get identifiant() {
-        return this.identifiant;
+        return this._identifiant;
     }
 
     set identifiant(identifiant) {
-        this.identifiant = identifiant;
+        this._identifiant = identifiant;
     }
 
     get motDePasse() {
-        return this.motDePasse;
+        return this._motDePasse;
     }
 
     set motDePasse(motDePasse) {
-        this.motDePasse = motDePasse;
+        this._motDePasse = motDePasse;
     }
 
     creerUtilisateur(utilisateur) {

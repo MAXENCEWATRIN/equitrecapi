@@ -28,13 +28,13 @@ module.exports = function (app) {
             } else {
                 con.query("INSERT INTO authentification (identifiant, motdepasse)" +
                     "VALUES ('" + login + "', '" + passwordhash + "');", function (err, rows, fields) {
-                    if (!err) {
-                        res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
-                    } else {
-                        res.send("{'response':{'type':'false', 'message':'Erreur lors de la création du profil'}}");
-                        console.log('Error while performing Query INSERT user.');
-                    }
-                });
+                        if (!err) {
+                            res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
+                        } else {
+                            res.send("{'response':{'type':'false', 'message':'Erreur lors de la création du profil'}}");
+                            console.log('Error while performing Query INSERT user.');
+                        }
+                    });
             }
         });
     });
@@ -42,15 +42,14 @@ module.exports = function (app) {
     app.post('/authentification/:login/:password', (req, res) => {
         var identifiant = req.params.login;
         var motdepasseHashed = req.params.password;
-        console.log(identifiant);
-        console.log(motdepasseHashed);
+        console.log("identifiant: " + identifiant);
+        console.log("mot de passe: " + motdepasseHashed);
         //var identifiant = "monsuperprogramme";
         //var motdepasseHashed = "cestlemeoilleur";
-        console.log('Dans le super orm');
 
         var utilisateur = new Utilisateur(identifiant, motdepasseHashed);
         utilisateur.creerUtilisateur(utilisateur);
-        console.log(utilisateur);
+        console.log(utilisateur + "ok");
         // var i = 0;
         //faire requête qui récupère les données en fonction du identifiant non hashé
 
@@ -66,13 +65,13 @@ module.exports = function (app) {
             } else {
                 con.query("INSERT INTO authentification (identifiant, motdepasse)" +
                     "VALUES ('" + login + "', '" + passwordhash + "');", function (err, rows, fields) {
-                    if (!err) {
-                        res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
-                    } else {
-                        res.send("{'response':{'type':'false', 'message':'Erreur lors de la création du profil'}}");
-                        console.log('Error while performing Query INSERT user.');
-                    }
-                });
+                        if (!err) {
+                            res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
+                        } else {
+                            res.send("{'response':{'type':'false', 'message':'Erreur lors de la création du profil'}}");
+                            console.log('Error while performing Query INSERT user.');
+                        }
+                    });
             }
         });
     });

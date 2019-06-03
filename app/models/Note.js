@@ -1,11 +1,10 @@
 const Sequelize = require("sequelize");
 
-module.exports = sequelize.define("contrat", {
+module.exports = sequelize.define("note", {
     id: {
         type: Sequelize.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
     }
-
 });

@@ -15,8 +15,8 @@ module.exports = {
             },
             createdAt: Sequelize.DATE,
             UpdatedAt: Sequelize.DATE,
-
-            niveauId: Sequelize.INTEGER(11)
+            niveauId: Sequelize.INTEGER(11),
+            dossardId: Sequelize.INTEGER(11)
         })
     },
 

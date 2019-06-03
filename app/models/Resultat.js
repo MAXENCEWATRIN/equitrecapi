@@ -1,14 +1,14 @@
 const Sequelize = require("sequelize");
 
-module.exports = sequelize.define("resultat",{
-    id : {
-        type : Sequelize.INTEGER(11),
+module.exports = sequelize.define("resultat", {
+    id: {
+        type: Sequelize.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
     },
-    score : {
-        type : Sequelize.INTEGER(100),
+    score: {
+        type: Sequelize.INTEGER(11),
         defaultValue: 0
     },
 

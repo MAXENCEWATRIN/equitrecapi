@@ -2,18 +2,17 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable("contrats",{
-            id : {
-                type : Sequelize.INTEGER(11),
+        return queryInterface.createTable("contrats", {
+            id: {
+                type: Sequelize.INTEGER(11),
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            createdAt : Sequelize.DATE,
-            UpdatedAt : Sequelize.DATE,
-
-            resultatId :Sequelize.INTEGER(11),
-
+            createdAt: Sequelize.DATE,
+            UpdatedAt: Sequelize.DATE,
+            resultatId: Sequelize.INTEGER(11),
+            contratId: Sequelize.INTEGER(11)
         })
     },
 

@@ -20,7 +20,7 @@ module.exports = {
       },
       createdAt: Sequelize.DATE,
       UpdatedAt: Sequelize.DATE,
-
+      utilisateurId: Sequelize.INTEGER(11)
     })
   },
 

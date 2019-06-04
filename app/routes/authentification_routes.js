@@ -49,7 +49,6 @@ module.exports = function (app) {
 
         var utilisateur = new Utilisateur(identifiant, motdepasseHashed);
         utilisateur.creerUtilisateur(utilisateur);
-        console.log(utilisateur + "ok");
         // var i = 0;
         //faire requête qui récupère les données en fonction du identifiant non hashé
 

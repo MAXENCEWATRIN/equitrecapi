@@ -40,10 +40,9 @@ module.exports.utilisateurDo = async (utilisateur) => {
 
     const ut = await Utilisateur.create({
         identifiant: utilisateur.identifiant,
-        motdepasse: utilisateur.motdepasse,
+        motdepasse: utilisateur.motDePasse,
         roleId: role.id
     }).catch(errHandler);
-    console.log(ut);
 
     const niveau = await Niveau.create({
         label: "débutant"

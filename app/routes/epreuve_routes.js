@@ -29,7 +29,7 @@ module.exports = function (app) {
     //liste des epreuves
     app.get('/epreuves', (rej, res) => {
         var results = "C'est un succès";
-        res.send(results);
+        res.status(200).json(results);
 
         console.log("C'est un succès");
     });

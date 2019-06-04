@@ -1,16 +1,16 @@
+const errHandler = (err) => { console.error("Error : ", err); };
+
 /**
  * ROLE
  */
 module.exports.creerRole = async (data) => {
     const Role = require("./models/Role");
-    const errHandler = (err) => { console.error("Error : ", err); };
     await Role.create({
         label: data.label
     }).catch(errHandler);
 }
 module.exports.afficherRole = async () => {
     const Role = require("./models/Role");
-    const errHandler = (err) => { console.error("Error : ", err); };
     await Role.findAll().catch(errHandler);
 }
 /**
@@ -18,19 +18,25 @@ module.exports.afficherRole = async () => {
  */
 module.exports.creerUtilisateur = async (data) => {
     const Utilisateur = require("./models/Utilisateur");
-    const errHandler = (err) => { console.error("Error : ", err); };
     await Utilisateur.create({
         identifiant: data.identifiant,
         motdepasse: data.motDePasse,
         roleId: role.id
     }).catch(errHandler);
 }
-module.exports.afficherUtilisateur = async () => {
+module.exports.afficherAllUtilisateur = async () => {
     const Utilisateur = require("./models/Utilisateur");
-    const errHandler = (err) => { console.error("Error : ", err); };
-    const u = await Utilisateur.findAll().catch(errHandler);
-    console.log(u);
+    await Utilisateur.findAll().catch(errHandler);
 }
+module.exports.connexionUtilisateur = async (identifiant, motDePasse) => {
+    const Utilisateur = require("./models/Utilisateur");
+    const resultat = await Utilisateur.findAll({
+        where: { identifiant: identifiant, motdepasse: motDePasse }
+    }).catch(errHandler);
+    if (resultat.length > 0) return true;
+    else return false;
+}
+
 
 
 //     const u = await Utilisateur.findAll({

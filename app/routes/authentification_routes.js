@@ -21,18 +21,15 @@ module.exports = function (app) {
     app.post('/authentification/connexion/:identifiant/:motdepasse', (req, res) => {
         var identifiant = req.params.identifiant;
         var motDePasse = req.params.motdepasse;
+        return JPA.connexionUtilisateur(identifiant, motDePasse);
 
-
-        var utilisateur = new Utilisateur(identifiant, motDePasse);
-        utilisateur.connexionUtilisateur(utilisateur);
-
-        if(res.status !== 200){
-            res.status(200).json({'response':{'type':'true', 'message':'Utilisateur identifié'}});
-        }
-        res.status(500).json({ 'response': { 'type': 'false', 'message': 'Erreur' } });
+        // if (res.status !== 200) {
+        //     res.status(200).json({ 'response': { 'type': 'true', 'message': 'Utilisateur identifié' } });
+        // }
+        // res.status(500).json({ 'response': { 'type': 'false', 'message': 'Erreur' } });
     });
     app.post('/afficherallutilisateur', (req, res) => {
-        return JPA.afficherUtilisateur();
+        return JPA.afficherAllUtilisateur();
     });
 };
 

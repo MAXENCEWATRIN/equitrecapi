@@ -24,12 +24,10 @@ module.exports = class Utilisateur {
     }
 
     creerUtilisateur(utilisateur) {
-        return JPA.JPA(utilisateur);
+        return JPA.creerUtilisateur(utilisateur);
     };
 
-    connexionUtilisateur(){
-
+    connexionUtilisateur() {
+        return JPA //TODO: do connection
     };
-
-
 }

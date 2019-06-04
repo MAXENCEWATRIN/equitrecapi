@@ -1,3 +1,6 @@
+/**
+ * ROLE
+ */
 module.exports.creerRole = async (data) => {
     const Role = require("./models/Role");
     const errHandler = (err) => { console.error("Error : ", err); };
@@ -5,23 +8,30 @@ module.exports.creerRole = async (data) => {
         label: data.label
     }).catch(errHandler);
 }
-module.exports.afficherRole = async (data) => {
+module.exports.afficherRole = async () => {
     const Role = require("./models/Role");
     const errHandler = (err) => { console.error("Error : ", err); };
-    const u = await Role.findAll().catch(errHandler);
+    await Role.findAll().catch(errHandler);
+}
+/**
+ * UTILISATEUR
+ */
+module.exports.creerUtilisateur = async (data) => {
+    const Utilisateur = require("./models/Utilisateur");
+    const errHandler = (err) => { console.error("Error : ", err); };
+    await Utilisateur.create({
+        identifiant: data.identifiant,
+        motdepasse: data.motDePasse,
+        roleId: role.id
+    }).catch(errHandler);
+}
+module.exports.afficherUtilisateur = async () => {
+    const Utilisateur = require("./models/Utilisateur");
+    const errHandler = (err) => { console.error("Error : ", err); };
+    const u = await Utilisateur.findAll().catch(errHandler);
     console.log(u);
-
 }
 
-
-// } else if (where == "AFFICHER_ALL_ROLE") {
-//     const u = await Role.findAll().catch(errHandler);
-// } else {
-//     const ut = await Utilisateur.create({
-//         identifiant: data.identifiant,
-//         motdepasse: data.motDePasse,
-//         roleId: role.id
-//     }).catch(errHandler);
 
 //     const u = await Utilisateur.findAll({
 //         where: { identifiant: "maxbis" }

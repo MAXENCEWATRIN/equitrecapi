@@ -21,6 +21,6 @@ module.exports = function (app) {
         role.creerRole(role);
     });
     app.post('/afficherallrole', (req, res) => {
-        return JPA.afficherRole({})
+        return JPA.afficherRole()
     });
 }

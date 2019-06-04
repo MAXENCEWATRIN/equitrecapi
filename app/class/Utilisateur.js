@@ -1,11 +1,10 @@
-const bootstrap = require("../bootstrap");
+const JPA = require("../JPA");
 
 module.exports = class Utilisateur {
 
     constructor(identifiant, motDePasse) {
         this._identifiant = identifiant;
         this._motDePasse = motDePasse;
-        console.log("created")
     }
 
     get identifiant() {
@@ -25,6 +24,6 @@ module.exports = class Utilisateur {
     }
 
     creerUtilisateur(utilisateur) {
-        return bootstrap.utilisateurDo(utilisateur);
+        return JPA.JPA(utilisateur);
     };
 }

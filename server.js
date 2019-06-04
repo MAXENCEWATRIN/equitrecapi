@@ -13,4 +13,4 @@ app.listen(port, () => {
 //DB connection
 require("./app/database/connection");
 
-require("./app/bootstrap");
+require("./app/JPA");

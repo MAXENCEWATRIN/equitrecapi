@@ -1,11 +1,9 @@
-//const mariadb = require('mariadb');
-
 const mysql = require('mysql2');
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "equitrec"
+    database: "equitrecapi"
 });
 let results = [];
 
@@ -17,8 +15,8 @@ module.exports = function (app) {
             if (!err) {
                 console.log('query success : ', rows);
                 rows.forEach(element => {
-                        results.push(element);
-                    },
+                    results.push(element);
+                },
                 );
                 res.send(results);
             } else
@@ -26,14 +24,14 @@ module.exports = function (app) {
         });
     });
     //requete d'une epreuve
-    app.post('/epreuve/:id', (rej, res) => {
-        con.query('SELECT * from epreuve', function (err, rows, fields) {
+    app.post('/epreuves/:id', (rej, res) => {
+        con.query('SELECT * from epreuves', function (err, rows, fields) {
             if (!err) {
                 console.log('query success : ', rows);
                 rows.forEach(element => {
-                        results.push(element);
+                    results.push(element);
 
-                    },
+                },
                 );
                 res.send(results);
             } else

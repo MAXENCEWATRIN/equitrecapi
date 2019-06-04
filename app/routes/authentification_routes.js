@@ -6,27 +6,19 @@ const mysql = require('mysql2');
 /** class **/
 var Utilisateur = require("../class/Utilisateur");
 /** erreur **/
-const errHandler = (err) => {
-    console.error("Error : ", err);
-}
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "equitrec"
-});
-let results = [];
 
 module.exports = function (app) {
 
     //deux param pour auth reçu, faire vérif des hash
-    app.get('/authentification/inscription/:identifiant/:motdepasse', (req, res) => {
+    app.get('/authentification/inscription/:identifiant/:motdepasse/:role', (req, res) => {
         var identifiant = req.params.login;
         var motDePasse = req.params.password;
-
+        var role = req.params.role;
         var utilisateur = new Utilisateur(identifiant, motDePasse);
-        utilisateur.creerUtilisateur(utilisateur);
-        res.status(200).json({'response':{'type':'true', 'message':'Profil créé'}});
+        utilisateur.creerUtilisateur(utilisateur, role);
+        //res.status(200).json({'response':{'type':'true', 'message':'Profil créé'}});
+        res.send();
+        console.log(res);
     });
     app.post('/authentification/connexion/:identifiant/:motdepasse', (req, res) => {
         var identifiant = req.params.identifiant;
@@ -36,7 +28,7 @@ module.exports = function (app) {
         var utilisateur = new Utilisateur(identifiant, motDePasse);
         utilisateur.connexionUtilisateur(utilisateur);
 
-        if(res.status != 200){
+        if(res.status !== 200){
             res.status(200).json({'response':{'type':'true', 'message':'Utilisateur identifié'}});
         }
         res.status(500).json({'response':{'type':'false', 'message':'Erreur'}});

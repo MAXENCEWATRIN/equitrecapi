@@ -23,8 +23,8 @@ module.exports = class Utilisateur {
         this._motDePasse = motDePasse;
     }
 
-    creerUtilisateur(utilisateur) {
-        return JPA.JPA(utilisateur);
+    creerUtilisateur(utilisateur, role) {
+        return JPA.creerUtilisateur(utilisateur, role);
     };
 
     connexionUtilisateur(){

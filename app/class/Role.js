@@ -17,4 +17,8 @@ module.exports = class Role {
     creerRole(role) {
         return JPA.creerRole(role);
     };
+
+    recupererRole(role){
+        return JPA.recupererRole(role);
+    };
 }

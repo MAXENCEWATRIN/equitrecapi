@@ -22,11 +22,11 @@ module.exports = function (app) {
         var login = req.params.login;
         var passwordhash = req.params.password;
         //verification user existant
-        con.query("SELECT identifiant from authentification where identifiant='" + login + "'", function (err, rows, fields) {
+        con.query("SELECT identifiant from utilisateurs where identifiant='" + login + "'", function (err, rows, fields) {
             if (!err && rows.length > 0) {
                 res.send("{'response':{'type':'false', 'message':'Identifiant déjà utilisé'}}");
             } else {
-                con.query("INSERT INTO authentification (identifiant, motdepasse)" +
+                con.query("INSERT INTO utilisateurs (identifiant, motdepasse)" +
                     "VALUES ('" + login + "', '" + passwordhash + "');", function (err, rows, fields) {
                         if (!err) {
                             res.send("{'response':{'type':'true', 'message':'Profil créé'}}");
@@ -58,11 +58,11 @@ module.exports = function (app) {
         var login = req.params.login;
         var passwordhash = req.params.password;
         //verification user existant
-        con.query("SELECT identifiant from authentification where identifiant='" + login + "'", function (err, rows, fields) {
+        con.query("SELECT identifiant from utilisateurs where identifiant='" + login + "'", function (err, rows, fields) {
             if (!err && rows.length > 0) {
                 res.send("{'response':{'type':'false', 'message':'Identifiant déjà utilisé'}}");
             } else {
-                con.query("INSERT INTO authentification (identifiant, motdepasse)" +
+                con.query("INSERT INTO utilisateurs (identifiant, motdepasse)" +
                     "VALUES ('" + login + "', '" + passwordhash + "');", function (err, rows, fields) {
                         if (!err) {
                             res.send("{'response':{'type':'true', 'message':'Profil créé'}}");

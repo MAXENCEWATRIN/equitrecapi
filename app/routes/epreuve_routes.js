@@ -20,7 +20,8 @@ module.exports = function (app) {
                         results.push(element);
                     },
                 );
-                res.send(results);
+                res.status(200).json(results);
+
             } else
                 console.log('Error while performing Query.');
         });
@@ -29,7 +30,7 @@ module.exports = function (app) {
     app.get('/epreuves', (rej, res) => {
         var results = "C'est un succès";
         res.send(results);
-        
+
         console.log("C'est un succès");
     });
     //requete d'une epreuve

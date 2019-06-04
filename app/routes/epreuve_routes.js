@@ -18,10 +18,18 @@ module.exports = function (app) {
                     results.push(element);
                 },
                 );
-                res.send(results);
+                res.status(200).json(results);
+
             } else
                 console.log('Error while performing Query.');
         });
+    });
+    //liste des epreuves
+    app.get('/epreuves', (rej, res) => {
+        var results = "C'est un succès";
+        res.status(200).json(results);
+
+        console.log("C'est un succès");
     });
     //requete d'une epreuve
     app.post('/epreuves/:id', (rej, res) => {

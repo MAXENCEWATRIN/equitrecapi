@@ -26,4 +26,10 @@ module.exports = class Utilisateur {
     creerUtilisateur(utilisateur) {
         return JPA.JPA(utilisateur);
     };
+
+    connexionUtilisateur(){
+
+    };
+
+
 }

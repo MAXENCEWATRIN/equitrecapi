@@ -16,7 +16,7 @@ module.exports.afficherRole = async () => {
 /**
  * UTILISATEUR
  */
-module.exports.creerUtilisateur = async (data) => {
+module.exports.creerUtilisateur = async (data, role) => {
     const Utilisateur = require("./models/Utilisateur");
     const errHandler = (err) => { console.error("Error : ", err); };
     await Utilisateur.create({

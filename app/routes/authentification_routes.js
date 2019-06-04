@@ -8,13 +8,14 @@ var Utilisateur = require("../class/Utilisateur");
 module.exports = function (app) {
 
     //deux param pour auth reçu, faire vérif des hash
-    app.get('/authentification/inscription/:identifiant/:motdepasse', (req, res) => {
+    app.get('/authentification/inscription/:identifiant/:motdepasse/:role', (req, res) => {
         var identifiant = req.params.identifiant;
         var motDePasse = req.params.motdepasse;
-
+        var role = req.params.role;
         var utilisateur = new Utilisateur(identifiant, motDePasse);
-        utilisateur.creerUtilisateur(utilisateur);
+        utilisateur.creerUtilisateur(utilisateur, role);
         res.status(200).json({ 'response': { 'type': 'true', 'message': 'Profil créé' } });
+
         res.send();
         console.log(res);
     });

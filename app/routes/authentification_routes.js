@@ -1,7 +1,5 @@
 const mysql = require('mysql2');
-
-/** Insertion des models**/
-//const Utilisateur = require("../models/Utilisateur");
+const JPA = require("../JPA");
 
 /** class **/
 var Utilisateur = require("../class/Utilisateur");
@@ -10,13 +8,13 @@ var Utilisateur = require("../class/Utilisateur");
 module.exports = function (app) {
 
     //deux param pour auth reçu, faire vérif des hash
-    app.get('/authentification/inscription/:identifiant/:motdepasse/:role', (req, res) => {
-        var identifiant = req.params.login;
-        var motDePasse = req.params.password;
-        var role = req.params.role;
+    app.get('/authentification/inscription/:identifiant/:motdepasse', (req, res) => {
+        var identifiant = req.params.identifiant;
+        var motDePasse = req.params.motdepasse;
+
         var utilisateur = new Utilisateur(identifiant, motDePasse);
-        utilisateur.creerUtilisateur(utilisateur, role);
-        //res.status(200).json({'response':{'type':'true', 'message':'Profil créé'}});
+        utilisateur.creerUtilisateur(utilisateur);
+        res.status(200).json({ 'response': { 'type': 'true', 'message': 'Profil créé' } });
         res.send();
         console.log(res);
     });
@@ -31,7 +29,10 @@ module.exports = function (app) {
         if(res.status !== 200){
             res.status(200).json({'response':{'type':'true', 'message':'Utilisateur identifié'}});
         }
-        res.status(500).json({'response':{'type':'false', 'message':'Erreur'}});
+        res.status(500).json({ 'response': { 'type': 'false', 'message': 'Erreur' } });
+    });
+    app.post('/afficherallutilisateur', (req, res) => {
+        return JPA.afficherUtilisateur();
     });
 };
 

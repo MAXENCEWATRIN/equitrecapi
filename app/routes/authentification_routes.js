@@ -22,7 +22,9 @@ module.exports = function (app) {
     app.post('/authentification/connexion/:identifiant/:motdepasse', (req, res) => {
         var identifiant = req.params.identifiant;
         var motDePasse = req.params.motdepasse;
-        return JPA.connexionUtilisateur(identifiant, motDePasse);
+        JPA.connexionUtilisateur(identifiant, motDePasse)
+            ? res.status(200).json({ 'response': { 'type': 'true', 'message': 'Utilisateur identifié' } })
+            : res.status(500).json({ 'response': { 'type': 'false', 'message': 'Mauvais identifiant ou mot de passe' } });
 
         // if (res.status !== 200) {
         //     res.status(200).json({ 'response': { 'type': 'true', 'message': 'Utilisateur identifié' } });

@@ -27,4 +27,10 @@ module.exports = class Utilisateur {
     creerUtilisateur(utilisateur) {
         return bootstrap.utilisateurDo(utilisateur);
     };
+
+    connexionUtilisateur(){
+
+    };
+
+
 }

@@ -25,6 +25,13 @@ module.exports = function (app) {
                 console.log('Error while performing Query.');
         });
     });
+    //liste des epreuves
+    app.get('/epreuves', (rej, res) => {
+        var results = "C'est un succès";
+        res.send(results);
+        
+        console.log("C'est un succès");
+    });
     //requete d'une epreuve
     app.post('/epreuve/:id', (rej, res) => {
         con.query('SELECT * from epreuve', function (err, rows, fields) {

@@ -20,7 +20,7 @@ let results = [];
 module.exports = function (app) {
 
     //deux param pour auth reçu, faire vérif des hash
-    app.get('/authentification/inscription/:login/:password', (req, res) => {
+    app.get('/authentification/inscription/:identifiant/:motdepasse', (req, res) => {
         var identifiant = req.params.login;
         var motDePasse = req.params.password;
 

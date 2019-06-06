@@ -1,39 +1,51 @@
-const mysql = require('mysql2');
-const JPA = require("../JPA");
-
-/** class **/
-var Utilisateur = require("../class/Utilisateur");
 /** erreur **/
-
-module.exports = function (app) {
-
+const errHandler = (err) => {
+    console.error("Error : ", err);
+};
+module.exports = function (app, db) {
     //deux param pour auth reçu, faire vérif des hash
-    app.get('/authentification/inscription/:identifiant/:motdepasse/:role', (req, res) => {
+    app.post('/authentification/inscription/:identifiant/:motdepasse/:role', (req, res) => {
         var identifiant = req.params.identifiant;
         var motDePasse = req.params.motdepasse;
         var role = req.params.role;
-        var utilisateur = new Utilisateur(identifiant, motDePasse);
-        utilisateur.creerUtilisateur(utilisateur, role);
-        res.status(200).json({ 'response': { 'type': 'true', 'message': 'Profil créé' } });
 
-        res.send();
-        console.log(res);
+        db.Utilisateur.findAll({where: { identifiant: identifiant, motdepasse: motDePasse }})
+            .then( (result) => {
+                if(result.length > 0){
+                    res.json({ 'response': { 'type': 'false', 'message': 'utilisateur existant'} });
+                    console.log(res);
+                }else{
+                    db.Utilisateur.create({
+                        identifiant: identifiant,
+                        motdepasse: motDePasse,
+                        roleId: role,
+                    }).then(res.json({'response': { 'type': 'true', 'message': 'Utilisateur créé' }}))
+                        .catch(errHandler);
+                }}).catch(errHandler);
     });
+
     app.post('/authentification/connexion/:identifiant/:motdepasse', (req, res) => {
         var identifiant = req.params.identifiant;
         var motDePasse = req.params.motdepasse;
-        JPA.connexionUtilisateur(identifiant, motDePasse)
-            ? res.status(200).json({ 'response': { 'type': 'true', 'message': 'Utilisateur identifié' } })
-            : res.status(500).json({ 'response': { 'type': 'false', 'message': 'Mauvais identifiant ou mot de passe' } });
 
-        // if (res.status !== 200) {
-        //     res.status(200).json({ 'response': { 'type': 'true', 'message': 'Utilisateur identifié' } });
-        // }
-        // res.status(500).json({ 'response': { 'type': 'false', 'message': 'Erreur' } });
+        db.Utilisateur.findAll({where: { identifiant: identifiant, motdepasse: motDePasse }})
+            .then( (result) => {
+                if(result.length > 0){
+                    res.json({ 'response': { 'type': 'true', 'message': 'utilisateur existant, connexion approuvée'} });
+                    console.log(res);
+                }}).catch(errHandler);
+
     });
-    app.post('/afficherallutilisateur', (req, res) => {
-        return JPA.afficherAllUtilisateur();
+    app.get('/afficherallutilisateurs', (req, res) => {
+        db.Utilisateur.findAll()
+            .then( (result) => {
+                if(result.length > 0){
+                    res.json({ 'response': { 'type': 'true', 'message': 'utilisateur existant, connexion approuvée'} });
+                    console.log(res);
+                }else{
+                    res.json({ 'response': { 'type': 'false', 'message': 'Aucun utilisateur'} });
+                }}).catch(errHandler);
     });
 };
 
-/** NOUVELLE VERSION AVEC ORM (En construction) **/
+

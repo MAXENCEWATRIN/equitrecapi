@@ -1,36 +1,20 @@
-const mysql = require('mysql2');
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "equitrecapi"
-});
-let results = [];
-
-
-module.exports = function (app) {
-    //liste des epreuves
-    app.post('/epreuves', (rej, res) => {
-        con.query('SELECT * from epreuves', function (err, rows, fields) {
-            if (!err) {
-                console.log('query success : ', rows);
-                rows.forEach(element => {
-                    results.push(element);
-                },
-                );
-                res.status(200).json(results);
-
-            } else
-                console.log('Error while performing Query.');
-        });
-    });
+/** erreur **/
+const errHandler = (err) => {
+    console.error("Error : ", err);
+};
+module.exports = function (app, db) {
     //liste des epreuves
     app.get('/epreuves', (rej, res) => {
-        var results = "C'est un succès";
-        res.status(200).json(results);
-
-        console.log("C'est un succès");
+        db.Epreuve.findAll()
+            .then( (result) => {
+                if(result.length > 0){
+                    res.json(result);
+                    console.log(res);
+                }else{
+                    res.json({ 'response': { 'type': 'false', 'message': 'Aucune epreuve'} });
+                }}).catch(errHandler);
     });
+
     //requete d'une epreuve
     app.post('/epreuves/:id', (rej, res) => {
         con.query('SELECT * from epreuves', function (err, rows, fields) {

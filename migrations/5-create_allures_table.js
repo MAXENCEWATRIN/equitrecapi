@@ -9,10 +9,20 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      score: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+      },
+      idutilisateur: {
+        type: Sequelize.INTEGER(11),
+        references: {
+          model: 'utilisateurs',
+          key: 'id'
+        },
+        allowNull: false
+      },
       createdAt: Sequelize.DATE,
-      UpdatedAt: Sequelize.DATE,
-      resultatId: Sequelize.INTEGER(11),
-      allureId: Sequelize.INTEGER(11)
+      UpdatedAt: Sequelize.DATE
     })
   },
 

@@ -12,11 +12,18 @@ module.exports = {
             numero: {
                 type: Sequelize.INTEGER(11),
                 allowNull: false,
+                unique: true
+            },
+            idniveau: {
+                type: Sequelize.INTEGER(11),
+                references: {
+                    model: 'niveaus',
+                    key: 'id'
+                },
+                allowNull: false
             },
             createdAt: Sequelize.DATE,
-            UpdatedAt: Sequelize.DATE,
-            niveauId: Sequelize.INTEGER(11),
-            dossardId: Sequelize.INTEGER(11)
+            UpdatedAt: Sequelize.DATE
         })
     },
 

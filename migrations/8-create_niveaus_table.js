@@ -12,6 +12,7 @@ module.exports = {
             label: {
                 type: Sequelize.STRING(255),
                 allowNull: false,
+                unique: true
             },
             createdAt: Sequelize.DATE,
             UpdatedAt: Sequelize.DATE,

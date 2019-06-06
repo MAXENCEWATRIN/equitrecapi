@@ -33,4 +33,5 @@ module.exports = function (sequelize, DataTypes) {
     Utilisateur.associate = function (models) {
         Utilisateur.hasMany(models.penalite);
     };
+    return Utilisateur;
 };

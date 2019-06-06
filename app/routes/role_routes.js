@@ -1,8 +1,4 @@
-const mysql = require('mysql2');
-const JPA = require("../JPA");
 
-/** class **/
-var Role = require("../class/Role");
 /** erreur **/
 const errHandler = (err) => {
     console.error("Error : ", err);
